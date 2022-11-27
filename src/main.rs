@@ -17,6 +17,8 @@ fn main() {
     let mut num2 = String::new();
     let mut operator = String::new();
 
+    let operators: Vec<char> = vec!['+','-','*','/'];
+
     print!("Please provide the first number ");
     read(&mut num1);
     print!("Please provide the second number ");
@@ -28,14 +30,14 @@ fn main() {
     let num2: f32 = num2.trim().parse().unwrap();
     let operator: char = operator.trim().chars().next().unwrap();
 
-    let operators = String::from("+-*/");
+    //let operators = String::from("+-*/");
 
-    if !operators.contains(operator){
-        println!("invalid operation");
-        return;
-    }
-
+    //if !operators.contains(operator){
+    //    println!("invalid operation");
+    //    return;
+    //}
+    assert!((operators.contains(&operator)), "You have chosen an invalid operator");
     println!("{}, {}, {} ", num1, num2, operator)
 
-    
+
 }
