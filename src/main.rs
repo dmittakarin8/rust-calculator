@@ -1,5 +1,6 @@
+use core::panic;
 //simple calculator that requests 2 numbers and an operation from the user
-use std::io::{stdin,stdout,Write};
+use std::{io::{stdin,stdout,Write}, result};
 
 //try using a vec to store operation types
 
@@ -30,14 +31,17 @@ fn main() {
     let num2: f32 = num2.trim().parse().unwrap();
     let operator: char = operator.trim().chars().next().unwrap();
 
-    //let operators = String::from("+-*/");
-
-    //if !operators.contains(operator){
-    //    println!("invalid operation");
-    //    return;
-    //}
     assert!((operators.contains(&operator)), "You have chosen an invalid operator");
-    println!("{}, {}, {} ", num1, num2, operator)
+
+    let result = match operator{
+        '+' => num1 + num2,
+        '-' => num1 - num2,
+        '*' => num1 * num2,
+        '/' => num2 / num2,
+        _ => panic!("cannot find operator, there is an error"),
+    };
+
+    println!("The result of {} {} {} is {}", num1, operator, num2, result);
 
 
 }
